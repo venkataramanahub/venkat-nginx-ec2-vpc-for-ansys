@@ -13,10 +13,10 @@ resource "aws_internet_gateway" "ansys" {
 }
 
 resource "aws_subnet" "public" {
-  for_each          = var.public_subnets
-  vpc_id            = aws_vpc.ansys.id
-  cidr_block        = each.value.cidr_block
-  availability_zone = each.value.availability_zone
+  for_each                = var.public_subnets
+  vpc_id                  = aws_vpc.ansys.id
+  cidr_block              = each.value.cidr_block
+  availability_zone       = each.value.availability_zone
   map_public_ip_on_launch = true
   tags = {
     Name = each.key

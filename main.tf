@@ -12,7 +12,7 @@ provider "aws" {
 }
 
 module "vpc" {
-  source = "./modules/vpc"
+  source   = "./modules/vpc"
   vpc_cidr = var.vpc_cidr
   public_subnets = {
     ansys-public-subnet1a = { cidr_block = "10.0.1.0/24", availability_zone = "us-east-1a" }
@@ -27,8 +27,8 @@ module "vpc" {
 }
 
 module "ec2" {
-  source = "./modules/ec2"
-  vpc_id = module.vpc.vpc_id
-  subnet_id = module.vpc.public_subnet_ids[0]
+  source            = "./modules/ec2"
+  vpc_id            = module.vpc.vpc_id
+  subnet_id         = module.vpc.public_subnet_ids[0]
   instance_key_name = "bastion"
 }

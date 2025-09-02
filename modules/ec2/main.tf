@@ -26,13 +26,13 @@ resource "aws_security_group" "ansys-security-group" {
 }
 
 resource "aws_instance" "nginx" {
-  ami           = "ami-00a929b66ed6e0de6"
-  instance_type = "t2.micro"
-  subnet_id     = var.subnet_id
+  ami                         = "ami-00a929b66ed6e0de6"
+  instance_type               = "t2.micro"
+  subnet_id                   = var.subnet_id
   associate_public_ip_address = true
-  vpc_security_group_ids = [aws_security_group.ansys-security-group.id]
-  key_name      = var.instance_key_name
-  user_data = <<-EOT
+  vpc_security_group_ids      = [aws_security_group.ansys-security-group.id]
+  key_name                    = var.instance_key_name
+  user_data                   = <<-EOT
               #!/bin/bash
               sudo yum update -y
               sudo yum install -y nginx
